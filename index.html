@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>خدمات اورنج المجانية</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Cairo', sans-serif; }
+    .animate-spin { animation: spin 1s linear infinite; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .animate-fade-in { animation: fadeIn 0.5s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600">
+  <div class="container mx-auto px-4 py-8 max-w-md">
+    
+    <!-- Service Selection Screen -->
+    <div id="selection-screen" class="space-y-6 animate-fade-in">
+      <!-- Header -->
+      <div class="text-center space-y-3">
+        <div class="w-20 h-20 bg-white rounded-full mx-auto flex items-center justify-center shadow-lg">
+          <svg class="w-10 h-10 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+          </svg>
+        </div>
+        <h1 class="text-3xl font-bold text-white drop-shadow-md">خدمات اورنج المجانية</h1>
+        <p class="text-white/90 text-lg">اختر الخدمة التي تريدها</p>
+      </div>
+
+      <!-- Service Cards -->
+      <div class="space-y-4">
+        <!-- 500MB Service -->
+        <div onclick="selectService('500mb')" class="cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-xl bg-white/95 backdrop-blur rounded-xl p-6 border-2 border-transparent hover:border-orange-300">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-md">
+              <span class="text-2xl font-bold text-white">500</span>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-800">500 ميجا اورنج</h3>
+              <p class="text-gray-500 mt-1">متجدد كل 15 يوم</p>
+              <div class="flex items-center gap-2 mt-2">
+                <span class="px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-medium">عرض خاص</span>
+              </div>
+            </div>
+            <div class="text-orange-500">
+              <svg class="h-6 w-6 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 250MB Service -->
+        <div onclick="selectService('250mb')" class="cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-xl bg-white/95 backdrop-blur rounded-xl p-6 border-2 border-transparent hover:border-purple-300">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-md">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-800">250 ميجا فوازير</h3>
+              <p class="text-gray-500 mt-1">هدية يومية مجانية</p>
+              <div class="flex items-center gap-2 mt-2">
+                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm font-medium">يوميا</span>
+              </div>
+            </div>
+            <div class="text-purple-500">
+              <svg class="h-6 w-6 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center space-y-3">
+        <div class="flex justify-center gap-3">
+          <a href="https://t.me/mabowaged_eg" target="_blank" class="px-4 py-2 bg-white/20 hover:bg-white/30 text-white rounded-full text-sm font-medium transition-colors backdrop-blur">قناه نت مجاني</a>
+          <a href="https://t.me/abo_shlkamy" target="_blank" class="px-4 py-2 bg-white/20 hover:bg-white/30 text-white rounded-full text-sm font-medium transition-colors backdrop-blur">المطور</a>
+        </div>
+        <p class="text-white/70 text-sm">لا تستخدمه فيما يغضب الله</p>
+      </div>
+    </div>
+
+    <!-- Form Screen -->
+    <div id="form-screen" class="hidden animate-fade-in">
+      <div class="bg-white/95 backdrop-blur shadow-xl rounded-xl">
+        <!-- Header -->
+        <div class="p-4 pb-2">
+          <button onclick="goBack()" class="flex items-center gap-2 text-gray-500 hover:text-gray-700 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+            <span>رجوع</span>
+          </button>
+        </div>
+
+        <div class="p-6 pt-2 space-y-6">
+          <!-- Service Header -->
+          <div class="text-center space-y-2">
+            <div id="service-icon" class="w-16 h-16 rounded-2xl mx-auto flex items-center justify-center shadow-lg"></div>
+            <h2 id="service-title" class="text-2xl font-bold text-gray-800"></h2>
+            <p id="service-subtitle" class="text-gray-500"></p>
+          </div>
+
+          <!-- Form -->
+          <form id="login-form" class="space-y-4">
+            <div class="space-y-2">
+              <label class="text-gray-700 font-medium block">رقم الهاتف</label>
+              <div class="relative">
+                <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                </svg>
+                <input type="tel" id="phone" placeholder="01234567890" maxlength="11" dir="ltr" class="w-full pr-11 h-12 text-lg border-2 rounded-lg px-4 focus:border-orange-400 focus:outline-none">
+              </div>
+              <p class="text-xs text-gray-400 text-center">يجب ان يكون 11 رقم ويبدا بـ 01</p>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-gray-700 font-medium block">كلمة مرور My Orange</label>
+              <div class="relative">
+                <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+                <input type="password" id="password" placeholder="ادخل كلمة المرور" class="w-full pr-11 h-12 text-lg border-2 rounded-lg px-4 focus:border-orange-400 focus:outline-none">
+              </div>
+            </div>
+
+            <button type="submit" id="submit-btn" class="w-full h-12 text-lg font-bold text-white rounded-lg transition-opacity hover:opacity-90">
+              <span id="btn-text">احصل على الهدية</span>
+              <span id="btn-loading" class="hidden items-center justify-center gap-2">
+                <svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                جاري المعالجة...
+              </span>
+            </button>
+          </form>
+
+          <!-- Result -->
+          <div id="result" class="hidden p-4 rounded-xl border-2 flex items-center gap-3 animate-fade-in"></div>
+
+          <!-- Footer Links -->
+          <div class="pt-4 border-t border-gray-100">
+            <div class="flex justify-center gap-3">
+              <a href="https://t.me/mabowaged_eg" target="_blank" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-full text-sm font-medium transition-colors">قناه نت مجاني</a>
+              <a href="https://t.me/abo_shlkamy" target="_blank" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-full text-sm font-medium transition-colors">المطور</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script>
+    let currentService = null;
+    const CORS_PROXY = "https://corsproxy.io/?";
+
+    function selectService(service) {
+      currentService = service;
+      document.getElementById('selection-screen').classList.add('hidden');
+      document.getElementById('form-screen').classList.remove('hidden');
+      
+      const icon = document.getElementById('service-icon');
+      const title = document.getElementById('service-title');
+      const subtitle = document.getElementById('service-subtitle');
+      const btn = document.getElementById('submit-btn');
+      
+      if (service === '500mb') {
+        icon.className = 'w-16 h-16 rounded-2xl mx-auto flex items-center justify-center shadow-lg bg-gradient-to-br from-orange-500 to-orange-600';
+        icon.innerHTML = '<span class="text-xl font-bold text-white">500</span>';
+        title.textContent = '500 ميجا اورنج';
+        subtitle.textContent = 'متجدد كل 15 يوم';
+        btn.className = 'w-full h-12 text-lg font-bold text-white rounded-lg transition-opacity hover:opacity-90 bg-gradient-to-r from-orange-500 to-orange-600';
+      } else {
+        icon.className = 'w-16 h-16 rounded-2xl mx-auto flex items-center justify-center shadow-lg bg-gradient-to-br from-purple-500 to-purple-600';
+        icon.innerHTML = '<span class="text-xl font-bold text-white">250</span>';
+        title.textContent = '250 ميجا فوازير';
+        subtitle.textContent = 'هدية يومية مجانية';
+        btn.className = 'w-full h-12 text-lg font-bold text-white rounded-lg transition-opacity hover:opacity-90 bg-gradient-to-r from-purple-500 to-purple-600';
+      }
+      
+      hideResult();
+    }
+
+    function goBack() {
+      document.getElementById('form-screen').classList.add('hidden');
+      document.getElementById('selection-screen').classList.remove('hidden');
+      document.getElementById('phone').value = '';
+      document.getElementById('password').value = '';
+      hideResult();
+    }
+
+    function showResult(type, message) {
+      const result = document.getElementById('result');
+      result.classList.remove('hidden');
+      
+      let icon, styles;
+      if (type === 'success') {
+        icon = '<svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
+        styles = 'bg-green-50 border-green-200 text-green-700';
+      } else if (type === 'warning') {
+        icon = '<svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>';
+        styles = 'bg-amber-50 border-amber-200 text-amber-700';
+      } else {
+        icon = '<svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
+        styles = 'bg-red-50 border-red-200 text-red-700';
+      }
+      
+      result.className = `p-4 rounded-xl border-2 flex items-center gap-3 animate-fade-in ${styles}`;
+      result.innerHTML = `${icon}<p class="font-medium">${message}</p>`;
+    }
+
+    function hideResult() {
+      document.getElementById('result').classList.add('hidden');
+    }
+
+    function setLoading(loading) {
+      const btn = document.getElementById('submit-btn');
+      const btnText = document.getElementById('btn-text');
+      const btnLoading = document.getElementById('btn-loading');
+      
+      btn.disabled = loading;
+      if (loading) {
+        btnText.classList.add('hidden');
+        btnLoading.classList.remove('hidden');
+        btnLoading.classList.add('flex');
+      } else {
+        btnText.classList.remove('hidden');
+        btnLoading.classList.add('hidden');
+        btnLoading.classList.remove('flex');
+      }
+    }
+
+    document.getElementById('phone').addEventListener('input', function(e) {
+      this.value = this.value.replace(/\D/g, '').slice(0, 11);
+    });
+
+    document.getElementById('login-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const phone = document.getElementById('phone').value;
+      const password = document.getElementById('password').value;
+      
+      if (!/^01[0-9]{9}$/.test(phone)) {
+        showResult('error', 'رقم الهاتف غير صحيح! يجب ان يكون 11 رقم ويبدا بـ 01');
+        return;
+      }
+      
+      if (password.length < 4) {
+        showResult('error', 'كلمة المرور يجب ان تكون 4 احرف على الاقل');
+        return;
+      }
+      
+      setLoading(true);
+      hideResult();
+      
+      try {
+        if (currentService === '500mb') {
+          await redeem500(phone, password);
+        } else {
+          await redeemFawazeer(phone, password);
+        }
+      } catch (error) {
+        showResult('error', 'حدث خطا في الاتصال. حاول مرة اخرى');
+      }
+      
+      setLoading(false);
+    });
+
+    async function fetchWithProxy(url, options) {
+      const response = await fetch(CORS_PROXY + encodeURIComponent(url), options);
+      return response.json();
+    }
+
+    async function redeem500(phone, password) {
+      try {
+        // Step 1: Sign In
+        const loginResult = await fetchWithProxy("https://services.orange.eg/SignIn.svc/SignInUser", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            appVersion: "7.2.0",
+            channel: { ChannelName: "MobinilAndMe", Password: "ig3yh*mk5l42@oj7QAR8yF" },
+            dialNumber: phone,
+            isAndroid: true,
+            password: password,
+          }),
+        });
+
+        if (!loginResult?.SignInUserResult?.UserData?.UserID) {
+          showResult('error', 'تاكد من الرقم وكلمة السر وحاول مرة اخرى');
+          return;
+        }
+
+        const userId = loginResult.SignInUserResult.UserData.UserID;
+
+        // Step 2: Generate Token
+        const tokenResult = await fetchWithProxy("https://services.orange.eg/GetToken.svc/GenerateToken", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            appVersion: "2.9.8",
+            channel: { ChannelName: "MobinilAndMe", Password: "ig3yh*mk5l42@oj7QAR8yF" },
+            dialNumber: phone,
+            isAndroid: true,
+            password: password,
+          }),
+        });
+
+        if (!tokenResult?.GenerateTokenResult?.Token) {
+          showResult('error', 'فشل في الحصول على التوكن');
+          return;
+        }
+
+        const ctv = tokenResult.GenerateTokenResult.Token;
+        const key = ",{.c][o^uecnlkijh*.iomv:QzCFRcd;drof/zx}w;ls.e85T^#ASwa?=(lk";
+        const htv = CryptoJS.SHA256(ctv + key).toString().toUpperCase();
+
+        // Step 3: Redeem
+        const result = await fetchWithProxy("https://services.orange.eg/APIs/Promotions/api/CAF/Redeem", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "_ctv": ctv,
+            "_htv": htv,
+            "UserId": userId,
+          },
+          body: JSON.stringify({
+            Language: "ar",
+            OSVersion: "Android7.0",
+            PromoCode: "رمضان كريم",
+            dial: phone,
+            password: password,
+            Channelname: "MobinilAndMe",
+            ChannelPassword: "ig3yh*mk5l42@oj7QAR8yF",
+          }),
+        });
+
+        if (result?.ErrorDescription === "Success") {
+          showResult('success', 'تم اضافة 500 ميجا بايت بنجاح');
+        } else if (result?.ErrorDescription === "User is redeemed before") {
+          showResult('warning', 'تم استلام الهدية من قبل');
+        } else {
+          showResult('error', result?.ErrorDescription || 'حدث خطا غير متوقع');
+        }
+      } catch (error) {
+        showResult('error', 'حدث خطا في الاتصال. حاول مرة اخرى');
+      }
+    }
+
+    async function redeemFawazeer(phone, password) {
+      try {
+        // Step 1: Sign In
+        const signInResult = await fetchWithProxy("https://services.orange.eg/SignIn.svc/SignInUser", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            appVersion: "9.0.1",
+            channel: { ChannelName: "MobinilAndMe", Password: "ig3yh*mk5l42@oj7QAR8yF" },
+            dialNumber: phone,
+            isAndroid: true,
+            lang: "ar",
+            password: password,
+          }),
+        });
+
+        if (!signInResult?.SignInUserResult?.AccessToken) {
+          showResult('error', 'رقم الهاتف او كلمة المرور غير صحيحة');
+          return;
+        }
+
+        const accessToken = signInResult.SignInUserResult.AccessToken;
+
+        // Step 2: Generate Token
+        const generateResult = await fetchWithProxy("https://services.orange.eg/APIs/Profile/api/BasicAuthentication/Generate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "AppVersion": "9.0.1",
+            "Token": accessToken,
+          },
+          body: JSON.stringify({
+            ChannelName: "MobinilAndMe",
+            ChannelPassword: "ig3yh*mk5l42@oj7QAR8yF",
+            Dial: phone,
+            Language: "ar",
+            Module: "0",
+            Password: password,
+          }),
+        });
+
+        if (!generateResult?.Token) {
+          showResult('error', 'فشل في انشاء رمز الدخول');
+          return;
+        }
+
+        const token = generateResult.Token;
+
+        // Step 3: Get Questions
+        const questionsResult = await fetchWithProxy("https://services.orange.eg/APIs/Ramadan2024/api/RamadanOffers/Fawazeer/Questions", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ Dial: phone, Language: "ar", Token: token }),
+        });
+
+        if (questionsResult?.ErrorCode === 1) {
+          showResult('warning', 'انت دخلت على الفوازير النهارده. جرب بكره');
+          return;
+        }
+
+        if (!questionsResult?.Questions || questionsResult.Questions.length === 0) {
+          showResult('error', 'لا توجد اسئلة متاحة حاليا');
+          return;
+        }
+
+        // Collect correct answers
+        const answersList = [];
+        for (const question of questionsResult.Questions) {
+          for (const answer of question.Answers) {
+            if (answer.IsCorrect === true) {
+              answersList.push({ QuestionId: answer.QuestionId, AnswerId: answer.Id });
+              break;
+            }
+          }
+        }
+
+        if (answersList.length === 0) {
+          showResult('error', 'لم يتم العثور على اجابات صحيحة');
+          return;
+        }
+
+        // Step 4: Submit Answers
+        const submitResult = await fetchWithProxy("https://services.orange.eg/APIs/Ramadan2024/api/RamadanOffers/Fawazeer/Submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ Dial: phone, Language: "ar", Token: token, Answers: answersList }),
+        });
+
+        if (submitResult?.ErrorDescription === "FawazeerSuccess") {
+          showResult('success', 'تم اضافة 250 ميجا بنجاح');
+        } else {
+          showResult('error', submitResult?.ErrorDescription || 'حدث خطا غير متوقع');
+        }
+      } catch (error) {
+        showResult('error', 'حدث خطا في الاتصال. حاول مرة اخرى');
+      }
+    }
+  </script>
+</body>
+</html>
