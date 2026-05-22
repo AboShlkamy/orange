@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>خدمات اورنج المجانية</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
 <body class="min-h-screen bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600">
   <div class="container mx-auto px-4 py-8 max-w-md">
     
-    <!-- Service Selection Screen -->
+    <!-- شاشة اختيار الخدمة -->
     <div id="selection-screen" class="space-y-6 animate-fade-in">
       <!-- Header -->
       <div class="text-center space-y-3">
@@ -30,9 +30,9 @@
         <p class="text-white/90 text-lg">اختر الخدمة التي تريدها</p>
       </div>
 
-      <!-- Service Cards -->
+      <!-- بطاقات الخدمات -->
       <div class="space-y-4">
-        <!-- 500MB Service -->
+        <!-- خدمة 500 ميجا -->
         <div onclick="selectService('500mb')" class="cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-xl bg-white/95 backdrop-blur rounded-xl p-6 border-2 border-transparent hover:border-orange-300">
           <div class="flex items-center gap-4">
             <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-md">
@@ -53,7 +53,7 @@
           </div>
         </div>
 
-        <!-- 250MB Service -->
+        <!-- خدمة 250 ميجا فوازير -->
         <div onclick="selectService('250mb')" class="cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-xl bg-white/95 backdrop-blur rounded-xl p-6 border-2 border-transparent hover:border-purple-300">
           <div class="flex items-center gap-4">
             <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-md">
@@ -87,10 +87,9 @@
       </div>
     </div>
 
-    <!-- Form Screen -->
+    <!-- شاشة النموذج -->
     <div id="form-screen" class="hidden animate-fade-in">
       <div class="bg-white/95 backdrop-blur shadow-xl rounded-xl">
-        <!-- Header -->
         <div class="p-4 pb-2">
           <button onclick="goBack()" class="flex items-center gap-2 text-gray-500 hover:text-gray-700 transition-colors">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -101,14 +100,12 @@
         </div>
 
         <div class="p-6 pt-2 space-y-6">
-          <!-- Service Header -->
           <div class="text-center space-y-2">
             <div id="service-icon" class="w-16 h-16 rounded-2xl mx-auto flex items-center justify-center shadow-lg"></div>
             <h2 id="service-title" class="text-2xl font-bold text-gray-800"></h2>
             <p id="service-subtitle" class="text-gray-500"></p>
           </div>
 
-          <!-- Form -->
           <form id="login-form" class="space-y-4">
             <div class="space-y-2">
               <label class="text-gray-700 font-medium block">رقم الهاتف</label>
@@ -143,10 +140,8 @@
             </button>
           </form>
 
-          <!-- Result -->
           <div id="result" class="hidden p-4 rounded-xl border-2 flex items-center gap-3 animate-fade-in"></div>
 
-          <!-- Footer Links -->
           <div class="pt-4 border-t border-gray-100">
             <div class="flex justify-center gap-3">
               <a href="https://t.me/mabowaged_eg" target="_blank" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-full text-sm font-medium transition-colors">قناه نت مجاني</a>
@@ -162,7 +157,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <script>
     let currentService = null;
-    const CORS_PROXY = "https://corsproxy.io/?";
 
     function selectService(service) {
       currentService = service;
@@ -270,188 +264,225 @@
           await redeemFawazeer(phone, password);
         }
       } catch (error) {
-        showResult('error', 'حدث خطا في الاتصال. حاول مرة اخرى');
+        showResult('error', 'حدث خطأ في الاتصال. تأكد من الإنترنت أو حاول لاحقاً');
       }
       
       setLoading(false);
     });
 
-    async function fetchWithProxy(url, options) {
-      const response = await fetch(CORS_PROXY + encodeURIComponent(url), options);
-      return response.json();
-    }
-
+    // ================ 500 ميجا (مع كافة الترويسات) ================
     async function redeem500(phone, password) {
-      try {
-        // Step 1: Sign In
-        const loginResult = await fetchWithProxy("https://services.orange.eg/SignIn.svc/SignInUser", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            appVersion: "7.2.0",
-            channel: { ChannelName: "MobinilAndMe", Password: "ig3yh*mk5l42@oj7QAR8yF" },
-            dialNumber: phone,
-            isAndroid: true,
-            password: password,
-          }),
-        });
+      // Step 1: Sign In
+      let res = await fetch("https://services.orange.eg/SignIn.svc/SignInUser", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+          "User-Agent": "okhttp/4.10.0",
+          "Accept-Encoding": "gzip",
+          "Connection": "Keep-Alive"
+        },
+        body: JSON.stringify({
+          appVersion: "7.2.0",
+          channel: { ChannelName: "MobinilAndMe", Password: "ig3yh*mk5l42@oj7QAR8yF" },
+          dialNumber: phone,
+          isAndroid: true,
+          password: password
+        })
+      });
+      let data = await res.json();
+      if (!data?.SignInUserResult?.UserData?.UserID) {
+        showResult('error', 'تأكد من الرقم وكلمة المرور');
+        return;
+      }
+      let userId = data.SignInUserResult.UserData.UserID;
 
-        if (!loginResult?.SignInUserResult?.UserData?.UserID) {
-          showResult('error', 'تاكد من الرقم وكلمة السر وحاول مرة اخرى');
-          return;
-        }
+      // تأخير بسيط كما في السكربت الأصلي
+      await new Promise(r => setTimeout(r, 1000));
 
-        const userId = loginResult.SignInUserResult.UserData.UserID;
+      // Step 2: Generate Token
+      res = await fetch("https://services.orange.eg/GetToken.svc/GenerateToken", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+          "User-Agent": "okhttp/4.10.0",
+          "Accept-Encoding": "gzip",
+          "Connection": "Keep-Alive"
+        },
+        body: JSON.stringify({
+          appVersion: "2.9.8",
+          channel: { ChannelName: "MobinilAndMe", Password: "ig3yh*mk5l42@oj7QAR8yF" },
+          dialNumber: phone,
+          isAndroid: true,
+          password: password
+        })
+      });
+      data = await res.json();
+      if (!data?.GenerateTokenResult?.Token) {
+        showResult('error', 'فشل إنشاء رمز الدخول');
+        return;
+      }
+      let ctv = data.GenerateTokenResult.Token;
+      let key = ",{.c][o^uecnlkijh*.iomv:QzCFRcd;drof/zx}w;ls.e85T^#ASwa?=(lk";
+      let htv = CryptoJS.SHA256(ctv + key).toString().toUpperCase();
 
-        // Step 2: Generate Token
-        const tokenResult = await fetchWithProxy("https://services.orange.eg/GetToken.svc/GenerateToken", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            appVersion: "2.9.8",
-            channel: { ChannelName: "MobinilAndMe", Password: "ig3yh*mk5l42@oj7QAR8yF" },
-            dialNumber: phone,
-            isAndroid: true,
-            password: password,
-          }),
-        });
+      await new Promise(r => setTimeout(r, 1000));
 
-        if (!tokenResult?.GenerateTokenResult?.Token) {
-          showResult('error', 'فشل في الحصول على التوكن');
-          return;
-        }
-
-        const ctv = tokenResult.GenerateTokenResult.Token;
-        const key = ",{.c][o^uecnlkijh*.iomv:QzCFRcd;drof/zx}w;ls.e85T^#ASwa?=(lk";
-        const htv = CryptoJS.SHA256(ctv + key).toString().toUpperCase();
-
-        // Step 3: Redeem
-        const result = await fetchWithProxy("https://services.orange.eg/APIs/Promotions/api/CAF/Redeem", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "_ctv": ctv,
-            "_htv": htv,
-            "UserId": userId,
-          },
-          body: JSON.stringify({
-            Language: "ar",
-            OSVersion: "Android7.0",
-            PromoCode: "رمضان كريم",
-            dial: phone,
-            password: password,
-            Channelname: "MobinilAndMe",
-            ChannelPassword: "ig3yh*mk5l42@oj7QAR8yF",
-          }),
-        });
-
-        if (result?.ErrorDescription === "Success") {
-          showResult('success', 'تم اضافة 500 ميجا بايت بنجاح');
-        } else if (result?.ErrorDescription === "User is redeemed before") {
-          showResult('warning', 'تم استلام الهدية من قبل');
-        } else {
-          showResult('error', result?.ErrorDescription || 'حدث خطا غير متوقع');
-        }
-      } catch (error) {
-        showResult('error', 'حدث خطا في الاتصال. حاول مرة اخرى');
+      // Step 3: Redeem
+      res = await fetch("https://services.orange.eg/APIs/Promotions/api/CAF/Redeem", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+          "User-Agent": "okhttp/4.10.0",
+          "_ctv": ctv,
+          "_htv": htv,
+          "UserId": userId
+        },
+        body: JSON.stringify({
+          Language: "ar",
+          OSVersion: "Android7.0",
+          PromoCode: "رمضان كريم",
+          dial: phone,
+          password: password,
+          Channelname: "MobinilAndMe",
+          ChannelPassword: "ig3yh*mk5l42@oj7QAR8yF"
+        })
+      });
+      data = await res.json();
+      if (data?.ErrorDescription === "Success") {
+        showResult('success', '✅ تم إضافة 500 ميجا بايت بنجاح');
+      } else if (data?.ErrorDescription === "User is redeemed before") {
+        showResult('warning', '⚠️ تم استلام الهدية من قبل');
+      } else {
+        showResult('error', data?.ErrorDescription || 'خطأ غير متوقع');
       }
     }
 
+    // ================ فوازير 250 ميجا (مع كافة الترويسات) ================
     async function redeemFawazeer(phone, password) {
-      try {
-        // Step 1: Sign In
-        const signInResult = await fetchWithProxy("https://services.orange.eg/SignIn.svc/SignInUser", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            appVersion: "9.0.1",
-            channel: { ChannelName: "MobinilAndMe", Password: "ig3yh*mk5l42@oj7QAR8yF" },
-            dialNumber: phone,
-            isAndroid: true,
-            lang: "ar",
-            password: password,
-          }),
-        });
+      // Step 1: Sign In
+      let res = await fetch("https://services.orange.eg/SignIn.svc/SignInUser", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+          "User-Agent": "okhttp/4.10.0",
+          "Accept-Encoding": "gzip",
+          "Connection": "Keep-Alive"
+        },
+        body: JSON.stringify({
+          appVersion: "9.9.0",
+          channel: { ChannelName: "MobinilAndMe", Password: "ig3yh*mk5l42@oj7QAR8yF" },
+          dialNumber: phone,
+          isAndroid: true,
+          lang: "ar",
+          password: password
+        })
+      });
+      let data = await res.json();
+      if (!data?.SignInUserResult?.AccessToken) {
+        showResult('error', 'رقم الهاتف أو كلمة المرور غير صحيحة');
+        return;
+      }
+      let accessToken = data.SignInUserResult.AccessToken;
 
-        if (!signInResult?.SignInUserResult?.AccessToken) {
-          showResult('error', 'رقم الهاتف او كلمة المرور غير صحيحة');
-          return;
-        }
+      // Step 2: Generate Token
+      res = await fetch("https://services.orange.eg/APIs/Profile/api/BasicAuthentication/Generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+          "User-Agent": "okhttp/4.10.0",
+          "Accept-Encoding": "gzip",
+          "Connection": "Keep-Alive",
+          "AppVersion": "9.0.1",
+          "OsVersion": "13",
+          "IsAndroid": "true",
+          "IsEasyLogin": "false",
+          "Token": accessToken
+        },
+        body: JSON.stringify({
+          ChannelName: "MobinilAndMe",
+          ChannelPassword: "ig3yh*mk5l42@oj7QAR8yF",
+          Dial: phone,
+          Language: "ar",
+          Module: "0",
+          Password: password
+        })
+      });
+      data = await res.json();
+      if (!data?.Token) {
+        showResult('error', 'فشل إنشاء رمز الدخول');
+        return;
+      }
+      let token = data.Token;
 
-        const accessToken = signInResult.SignInUserResult.AccessToken;
+      // Step 3: Get Questions
+      res = await fetch("https://services.orange.eg/APIs/Ramadan2024/api/RamadanOffers/Fawazeer/Questions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+          "User-Agent": "Mozilla/5.0 (Linux; Android 13; 21061119AG Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/139.0.7258.158 Mobile Safari/537.36",
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Encoding": "gzip, deflate, br, zstd",
+          "sec-ch-ua-platform": "\"Android\"",
+          "sec-ch-ua": "\"Not;A=Brand\";v=\"99\", \"Android WebView\";v=\"139\", \"Chromium\";v=\"139\"",
+          "sec-ch-ua-mobile": "?1",
+          "Origin": "https://services.orange.eg",
+          "X-Requested-With": "com.orange.mobinilandmf",
+          "Sec-Fetch-Site": "same-origin",
+          "Sec-Fetch-Mode": "cors",
+          "Sec-Fetch-Dest": "empty",
+          "Accept-Language": "ar,en-US;q=0.9,en;q=0.8"
+        },
+        body: JSON.stringify({ Dial: phone, Language: "ar", Token: token })
+      });
+      data = await res.json();
+      if (data?.ErrorCode === 1) {
+        showResult('warning', 'انت دخلت على الفوازير النهارده. جرب بكره');
+        return;
+      }
+      if (!data?.Questions || data.Questions.length === 0) {
+        showResult('error', 'لا توجد أسئلة متاحة حالياً');
+        return;
+      }
 
-        // Step 2: Generate Token
-        const generateResult = await fetchWithProxy("https://services.orange.eg/APIs/Profile/api/BasicAuthentication/Generate", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "AppVersion": "9.0.1",
-            "Token": accessToken,
-          },
-          body: JSON.stringify({
-            ChannelName: "MobinilAndMe",
-            ChannelPassword: "ig3yh*mk5l42@oj7QAR8yF",
-            Dial: phone,
-            Language: "ar",
-            Module: "0",
-            Password: password,
-          }),
-        });
-
-        if (!generateResult?.Token) {
-          showResult('error', 'فشل في انشاء رمز الدخول');
-          return;
-        }
-
-        const token = generateResult.Token;
-
-        // Step 3: Get Questions
-        const questionsResult = await fetchWithProxy("https://services.orange.eg/APIs/Ramadan2024/api/RamadanOffers/Fawazeer/Questions", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ Dial: phone, Language: "ar", Token: token }),
-        });
-
-        if (questionsResult?.ErrorCode === 1) {
-          showResult('warning', 'انت دخلت على الفوازير النهارده. جرب بكره');
-          return;
-        }
-
-        if (!questionsResult?.Questions || questionsResult.Questions.length === 0) {
-          showResult('error', 'لا توجد اسئلة متاحة حاليا');
-          return;
-        }
-
-        // Collect correct answers
-        const answersList = [];
-        for (const question of questionsResult.Questions) {
-          for (const answer of question.Answers) {
-            if (answer.IsCorrect === true) {
-              answersList.push({ QuestionId: answer.QuestionId, AnswerId: answer.Id });
-              break;
-            }
+      let answersList = [];
+      for (let q of data.Questions) {
+        for (let a of q.Answers) {
+          if (a.IsCorrect === true) {
+            answersList.push({ QuestionId: a.QuestionId, AnswerId: a.Id });
+            break;
           }
         }
+      }
+      if (answersList.length === 0) {
+        showResult('error', 'لم يتم العثور على إجابات صحيحة');
+        return;
+      }
 
-        if (answersList.length === 0) {
-          showResult('error', 'لم يتم العثور على اجابات صحيحة');
-          return;
-        }
-
-        // Step 4: Submit Answers
-        const submitResult = await fetchWithProxy("https://services.orange.eg/APIs/Ramadan2024/api/RamadanOffers/Fawazeer/Submit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ Dial: phone, Language: "ar", Token: token, Answers: answersList }),
-        });
-
-        if (submitResult?.ErrorDescription === "FawazeerSuccess") {
-          showResult('success', 'تم اضافة 250 ميجا بنجاح');
-        } else {
-          showResult('error', submitResult?.ErrorDescription || 'حدث خطا غير متوقع');
-        }
-      } catch (error) {
-        showResult('error', 'حدث خطا في الاتصال. حاول مرة اخرى');
+      // Step 4: Submit
+      res = await fetch("https://services.orange.eg/APIs/Ramadan2024/api/RamadanOffers/Fawazeer/Submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+          "User-Agent": "Mozilla/5.0 (Linux; Android 13; 21061119AG Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/139.0.7258.158 Mobile Safari/537.36",
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Encoding": "gzip, deflate, br, zstd",
+          "sec-ch-ua-platform": "\"Android\"",
+          "sec-ch-ua": "\"Not;A=Brand\";v=\"99\", \"Android WebView\";v=\"139\", \"Chromium\";v=\"139\"",
+          "sec-ch-ua-mobile": "?1",
+          "Origin": "https://services.orange.eg",
+          "X-Requested-With": "com.orange.mobinilandmf",
+          "Sec-Fetch-Site": "same-origin",
+          "Sec-Fetch-Mode": "cors",
+          "Sec-Fetch-Dest": "empty",
+          "Accept-Language": "ar,en-US;q=0.9,en;q=0.8"
+        },
+        body: JSON.stringify({ Dial: phone, Language: "ar", Token: token, Answers: answersList })
+      });
+      data = await res.json();
+      if (data?.ErrorDescription === "FawazeerSuccess") {
+        showResult('success', '🎉 تم إضافة 250 ميجا بنجاح');
+      } else {
+        showResult('error', data?.ErrorDescription || 'حدث خطأ غير متوقع');
       }
     }
   </script>
